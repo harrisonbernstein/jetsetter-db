@@ -122,11 +122,6 @@ CREATE TABLE IF NOT EXISTS CrewMemberAssignment (
 );
 
 -- create all the sample data
-INSERT INTO Airport (IATAcode, name, city, state, country)
-VALUES
-    ('JFK', 'John F. Kennedy International Airport', 'New York', 'NY', 'USA'),
-    ('LAX', 'Los Angeles International Airport', 'Los Angeles', 'CA', 'USA'),
-    ('ORD', 'O\'Hare International Airport', 'Chicago', 'IL', 'USA');
 
 insert into Airport (IATAcode, name, city, state, country) values ('GSS', 'Sabi Sabi Airport', 'Hanjia', null, 'ZA');
 insert into Airport (IATAcode, name, city, state, country) values ('HET', 'Baita International Airport', 'Luleå', 'BD', 'CN');
@@ -180,13 +175,7 @@ insert into Airport (IATAcode, name, city, state, country) values ('RYN', 'Royan
 insert into Airport (IATAcode, name, city, state, country) values ('HNN', 'Honinabi Airport', 'Tugu', null, 'PG');
 
 
-INSERT INTO AirportGate (gateNumber, IATAcode)
-VALUES
-    ('A1', 'JFK'),
-    ('B2', 'JFK'),
-    ('C3', 'LAX'),
-    ('D4', 'ORD');
-    insert into AirportGate (gateNumber, IATAcode) values ('E5', 'OKJ');
+insert into AirportGate (gateNumber, IATAcode) values ('E5', 'OKJ');
 insert into AirportGate (gateNumber, IATAcode) values ('A1', 'LZU');
 insert into AirportGate (gateNumber, IATAcode) values ('H8', 'IEJ');
 insert into AirportGate (gateNumber, IATAcode) values ('E5', 'BBR');
@@ -237,12 +226,6 @@ insert into AirportGate (gateNumber, IATAcode) values ('J10', 'FWH');
 insert into AirportGate (gateNumber, IATAcode) values ('A1', 'ONK');
 insert into AirportGate (gateNumber, IATAcode) values ('E5', 'DWO');
 
-
-INSERT INTO Aircraft (aircraftID, model, capacity)
-VALUES
-    (1, 'Boeing 737', 150),
-    (2, 'Airbus A320', 180),
-    (3, 'Cessna 310', 4);
 insert into Aircraft (aircraftID, model, capacity) values (1, 'Airbus A320', 58);
 insert into Aircraft (aircraftID, model, capacity) values (2, 'Airbus A320', 83);
 insert into Aircraft (aircraftID, model, capacity) values (3, 'Embraer E190', 412);
@@ -294,12 +277,6 @@ insert into Aircraft (aircraftID, model, capacity) values (48, 'Bombardier Chall
 insert into Aircraft (aircraftID, model, capacity) values (49, 'Boeing 747', 371);
 insert into Aircraft (aircraftID, model, capacity) values (50, 'Embraer E190', 155);
 
-
-INSERT INTO Manager (managerID, firstName, lastName)
-VALUES
-    (1, 'Michael', 'Smith'),
-    (2, 'Emily', 'Jones'),
-    (3, 'Sarah', 'White');
 insert into Manager (managerID, firstName, lastName) values (1, 'Iorgos', 'Doyley');
 insert into Manager (managerID, firstName, lastName) values (2, 'Pia', 'Pencot');
 insert into Manager (managerID, firstName, lastName) values (3, 'Albrecht', 'Kevis');
@@ -351,11 +328,6 @@ insert into Manager (managerID, firstName, lastName) values (48, 'Lilia', 'Claps
 insert into Manager (managerID, firstName, lastName) values (49, 'Pris', 'Belly');
 insert into Manager (managerID, firstName, lastName) values (50, 'Linnet', 'Lipscomb');
 
-INSERT INTO Flight (flightId, status, duration, destinationGate, destinationAirport, originGate, originAirport, takeOffTime, landingTime, aircraft, managerID)
-VALUES
-    (1, 'On Time', '3:30:00', 'A1', 'JFK', 'C3', 'LAX', '2023-11-30 08:00:00', '2023-11-30 11:30:00', 1, 3),
-    (2, 'Delayed', '2:45:00', 'B2', 'JFK', 'D4', 'ORD', '2023-11-30 12:00:00', '2023-11-30 14:45:00', 2, 2),
-    (3, 'On Time', '4:15:00', 'C3', 'LAX', 'A1', 'JFK', '2023-12-01 10:30:00', '2023-12-01 14:45:00', 3, 1);
 insert into Flight (flightId, status, duration, destinationGate, destinationAirport, originGate, originAirport, takeOffTime, landingTime, aircraft, managerID) values (1, 'delayed', '1:42:32', 'E5', 'TED', 'F6', 'EMA', '8:24 AM', '11:21 PM', 1, 1);
 insert into Flight (flightId, status, duration, destinationGate, destinationAirport, originGate, originAirport, takeOffTime, landingTime, aircraft, managerID) values (2, 'diverted', '13:17:38', 'C3', 'BUG', 'H8', 'CRF', '7:41 PM', '12:02 AM', 2, 2);
 insert into Flight (flightId, status, duration, destinationGate, destinationAirport, originGate, originAirport, takeOffTime, landingTime, aircraft, managerID) values (3, 'delayed', '23:44:37', 'G7', 'IKT', 'D4', 'GAD', '7:49 PM', '4:26 AM', 3, 3);
@@ -407,12 +379,6 @@ insert into Flight (flightId, status, duration, destinationGate, destinationAirp
 insert into Flight (flightId, status, duration, destinationGate, destinationAirport, originGate, originAirport, takeOffTime, landingTime, aircraft, managerID) values (49, 'diverted', '9:38:17', 'H8', 'PMG', 'J10', 'SHK', '4:00 AM', '10:51 AM', 49, 49);
 insert into Flight (flightId, status, duration, destinationGate, destinationAirport, originGate, originAirport, takeOffTime, landingTime, aircraft, managerID) values (50, 'delayed', '21:59:36', 'I9', 'OHA', 'A1', 'HNL', '3:19 AM', '3:01 PM', 50, 50);
 
-
-INSERT INTO Passenger (passengerId, firstName, lastName, dateOfBirth, gender, nationality)
-VALUES
-    (1, 'John', 'Doe', '2000-12-05', 'M', 'American'),
-    (2, 'Jane', 'Smith', '1990-03-25', 'F', 'Australian'),
-    (3, 'Bob', 'Johnson', '1967-10-17', 'M', 'Russian');
 insert into Passenger (passengerId, firstName, lastname, dateOfBirth, gender, nationality) values (1, 'Claire', 'Kirtley', '1893-15-90', 'M', 'Russian');
 insert into Passenger (passengerId, firstName, lastname, dateOfBirth, gender, nationality) values (2, 'Tove', 'Showalter', '9475-20-14', 'F', 'Canadian');
 insert into Passenger (passengerId, firstName, lastname, dateOfBirth, gender, nationality) values (3, 'Melisse', 'Egdell', '0692-78-77', 'F', 'Spanish');
@@ -464,12 +430,6 @@ insert into Passenger (passengerId, firstName, lastname, dateOfBirth, gender, na
 insert into Passenger (passengerId, firstName, lastname, dateOfBirth, gender, nationality) values (49, 'Ida', 'Helix', '9961-38-55', 'F', 'Canadian');
 insert into Passenger (passengerId, firstName, lastname, dateOfBirth, gender, nationality) values (50, 'Florry', 'Kuhnel', '0251-77-35', 'F', 'Spanish');
 
-
-INSERT INTO PassengerEmail (passengerId, email)
-VALUES
-    (1, 'john.doe@example.com'),
-    (2, 'jane.smith@example.com'),
-    (3, 'bob.johnson@example.com');
 insert into PassengerEmail (passengerId, email) values (1, 'fbenson0@yellowpages.com');
 insert into PassengerEmail (passengerId, email) values (2, 'ojewis1@hibu.com');
 insert into PassengerEmail (passengerId, email) values (3, 'amordey2@dagondesign.com');
@@ -521,12 +481,6 @@ insert into PassengerEmail (passengerId, email) values (48, 'kbarrowcliff1b@stan
 insert into PassengerEmail (passengerId, email) values (49, 'lfeighney1c@pbs.org');
 insert into PassengerEmail (passengerId, email) values (50, 'lbradane1d@forbes.com');
 
-
-INSERT INTO PassengerPhoneNumber (passengerId, phoneNumber)
-VALUES
-    (1, 1234567890),
-    (2, 11111111111),
-    (3, 234396436);
 insert into PassengerPhoneNumber (passengerId, phoneNumber) values (1, 'kannwyl0@webeden.co.uk');
 insert into PassengerPhoneNumber (passengerId, phoneNumber) values (2, 'edominick1@auda.org.au');
 insert into PassengerPhoneNumber (passengerId, phoneNumber) values (3, 'dparrin2@jiathis.com');
@@ -578,12 +532,6 @@ insert into PassengerPhoneNumber (passengerId, phoneNumber) values (48, 'aahrens
 insert into PassengerPhoneNumber (passengerId, phoneNumber) values (49, 'bstannah1c@youku.com');
 insert into PassengerPhoneNumber (passengerId, phoneNumber) values (50, 'mfawdry1d@printfriendly.com');
 
-
-INSERT INTO Booking (bookingId, numberBags, preferences, boardingGroup, seat, flightId, passengerId)
-VALUES
-    (101, 2, 'Window seat', 3, '7A', 1, 1),
-    (102, 1, 'Aisle seat', 2, '15C', 2, 2),
-    (103, 3, 'Peanut Allergy', 1, '4B', 3, 3);
 insert into Booking (bookingId, numberBags, preferences, boardingGroup, seat, flightId, passengerId) values (1, 3.31, 'vegetarian', '2', 'J10', 1, 1);
 insert into Booking (bookingId, numberBags, preferences, boardingGroup, seat, flightId, passengerId) values (2, 3.17, 'vegetarian', 'A', 'C3', 2, 2);
 insert into Booking (bookingId, numberBags, preferences, boardingGroup, seat, flightId, passengerId) values (3, 5.59, 'vegetarian', 'D', 'F6', 3, 3);
@@ -635,12 +583,6 @@ insert into Booking (bookingId, numberBags, preferences, boardingGroup, seat, fl
 insert into Booking (bookingId, numberBags, preferences, boardingGroup, seat, flightId, passengerId) values (49, 5.42, 'vegetarian', 'B', 'E5', 49, 49);
 insert into Booking (bookingId, numberBags, preferences, boardingGroup, seat, flightId, passengerId) values (50, 9.9, 'vegetarian', '3', 'H8', 50, 50);
 
-
-INSERT INTO Billing (billingId, totalAmount, paymentStatus, paymentMethod, bookingId)
-VALUES
-    (301, 150.00, 'Paid', 'Credit Card', 101),
-    (302, 120.50, 'Paid', 'PayPal', 102),
-    (303, 200.75, 'Pending', 'Bank Transfer', 103);
 insert into Billing (billingId, totalAmount, paymentStatus, paymentMethod, bookingId) values (1, 743.24, 'unpaid', 'credit card', 1);
 insert into Billing (billingId, totalAmount, paymentStatus, paymentMethod, bookingId) values (2, 616.89, 'cancelled', 'credit card', 2);
 insert into Billing (billingId, totalAmount, paymentStatus, paymentMethod, bookingId) values (3, 632.85, 'cancelled', 'PayPal', 3);
@@ -692,12 +634,6 @@ insert into Billing (billingId, totalAmount, paymentStatus, paymentMethod, booki
 insert into Billing (billingId, totalAmount, paymentStatus, paymentMethod, bookingId) values (49, 675.75, 'unpaid', 'debit card', 49);
 insert into Billing (billingId, totalAmount, paymentStatus, paymentMethod, bookingId) values (50, 463.55, 'cancelled', 'credit card', 50);
 
-
-INSERT INTO CrewMember (crewID, firstName, lastName, weeklyHoursWorked, timeTakenOff)
-VALUES
-    (1, 'Alice', 'Johnson', 35, 5),
-    (2, 'Charlie', 'Brown', 28, 2),
-    (3, 'Eva', 'Miller', 32, 4);
 insert into CrewMember (crewID, firstName, lastName, weeklyHoursWorked, timeTakenOff) values (1, 'Idaline', 'Antonacci', 25, 30);
 insert into CrewMember (crewID, firstName, lastName, weeklyHoursWorked, timeTakenOff) values (2, 'Vernon', 'Iglesia', 26, 10);
 insert into CrewMember (crewID, firstName, lastName, weeklyHoursWorked, timeTakenOff) values (3, 'Hermy', 'Pavlenko', 18, 20);
@@ -749,12 +685,6 @@ insert into CrewMember (crewID, firstName, lastName, weeklyHoursWorked, timeTake
 insert into CrewMember (crewID, firstName, lastName, weeklyHoursWorked, timeTakenOff) values (49, 'Dan', 'Gulk', 18, 17);
 insert into CrewMember (crewID, firstName, lastName, weeklyHoursWorked, timeTakenOff) values (50, 'Orelle', 'Legrice', 12, 34);
 
-
-INSERT INTO CrewMemberAssignment (assignmentID, flightId, role, crewID)
-VALUES
-    (201, 1, 'Pilot', 1),
-    (202, 2, 'Flight Attendant', 2),
-    (203, 3, 'Co-Pilot', 3);
 insert into CrewMemberAssignment (assignmentID, flightId, role, crewID) values (1, 1, 'cabin crew', 1);
 insert into CrewMemberAssignment (assignmentID, flightId, role, crewID) values (2, 2, 'flight attendant', 2);
 insert into CrewMemberAssignment (assignmentID, flightId, role, crewID) values (3, 3, 'cabin crew', 3);
