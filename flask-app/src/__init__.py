@@ -36,14 +36,14 @@ def create_app():
 
     # Import the various Beluprint Objects
     # from src.customers.customers import customers
-    from src.flight.flight  import flight
+    from src.flight.flight  import Flight
 
     # Register the routes from each Blueprint with the app object
     # and give a url prefix to each
     # app.register_blueprint(customers,   url_prefix='/c')
     # app.register_blueprint(products,    url_prefix='/p')
 
-    app.register_blueprint(flight,     url_prefix='f')
+    app.register_blueprint(Flight,     url_prefix='/f')
 
 
     # Don't forget to return the app object

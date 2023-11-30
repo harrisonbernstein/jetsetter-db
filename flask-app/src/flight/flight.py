@@ -2,13 +2,11 @@ from flask import Blueprint, request, jsonify, make_response
 import json
 from src import db
 
-flight = Blueprint('flight', __name__)
+Flight = Blueprint('flight', __name__)
 
 #Get all customers from the DB
 @Flight.route('/flights/passenger', methods=['GET'])
-
-# doesnt return manager's id
-def get_flight_passenger():
+def get_flights_passenger():
     cursor = db.get_db().cursor()
     cursor.execute('select flightId, status, duration, destinationGate, destinationAirport, originGate, originAirport, takeOffTime, landingTime, aircraft')
     row_headers = [x[0] for x in cursor.description]
@@ -22,7 +20,7 @@ def get_flight_passenger():
     return the_response
 
 @Flight.route('/flights/crew', methods=['GET'])
-def get_flight_crew():
+def get_flights_crew():
     cursor = db.get_db().cursor()
     cursor.execute('select flightId, status, duration, destinationGate, destinationAirport, originGate, originAirport, takeOffTime,\
                    landingTime, aircraft, managerID from Flight')
@@ -53,7 +51,7 @@ def get_flight_passenger(flightId):
     return the_response
 
 # Get flight detail for flight with particular flightID
-@Flight.route('/customers/passsenger/<flightId>', methods=['GET'])
+@Flight.route('/customers/crew/<flightId>', methods=['GET'])
 def get_flight_crew(flightId):
     cursor = db.get_db().cursor()
     cursor.execute('select * from Flight where flightId = {0}'.format(flightId))
