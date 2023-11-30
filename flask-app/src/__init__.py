@@ -31,15 +31,20 @@ def create_app():
     @app.route("/")
     def welcome():
         return "<h1>Welcome to the the Jetsetter Database</h1>"
+    
+   
 
     # Import the various Beluprint Objects
     # from src.customers.customers import customers
-    # from src.products.products  import products
+    from src.flight.flight  import flight
 
     # Register the routes from each Blueprint with the app object
     # and give a url prefix to each
     # app.register_blueprint(customers,   url_prefix='/c')
     # app.register_blueprint(products,    url_prefix='/p')
+
+    app.register_blueprint(flight,     url_prefix='f')
+
 
     # Don't forget to return the app object
     return app
