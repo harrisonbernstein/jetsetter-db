@@ -4,7 +4,7 @@ from src import db
 
 airports = Blueprint('airports', __name__)
 
-# Get all bookings from the DB
+# Get all airports from the DB
 @airports.route('/airports', methods=['GET'])
 def get_airports():
     cursor = db.get_db().cursor()
@@ -16,6 +16,30 @@ def get_airports():
         json_data.append(dict(zip(column_headers, row)))   
     return jsonify(json_data)
 
+# Add new airport to the database
+@airports.route('/airports', methods=['POST'])
+def add_new_airport():
+    data = request.json
+    IATACode = data['airport_iata_code']
+    name = data['airport_name']
+    city = data['airport_city']
+    state = data['airport_state']
+    country = data['airport_country']
+
+    query = 'insert into Airport (IATACode, name, city, state, country) values ("'
+    query += IATACode + '", "'
+    query += name + '", "'
+    query += city + '", '
+    query += state + '", '
+    query += country + ')'
+
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+    
+    return 'Success!'
+
+# get airport of a specific ID (IATA code)
 @airports.route('/airports/<id>', methods=['GET'])
 def get_airports_by_id(id):
     cursor = db.get_db().cursor()
@@ -26,3 +50,45 @@ def get_airports_by_id(id):
     for row in theData:
         json_data.append(dict(zip(column_headers, row)))   
     return jsonify(json_data)
+
+# Update info about the given airport
+@airports.route('/airports/<id>', methods=['PUT'])
+def update_airport(id):
+    data = request.json
+    name = data.get('airport_name')
+    city = data.get('airport_city')
+    state = data.get('airport_state')
+    country = data.get('airport_country')
+
+    if not name and not city and not state and not country:
+        return 'No fields provided for update', 400
+
+    # Construct the query
+    query = 'UPDATE Airport SET'
+    if name:
+        query += f' name = "{name}",'
+    if city:
+        query += f' city = "{city}",'
+    if state:
+        query += f' state = "{state}",'
+    if country:
+        query += f' country = "{country}",'
+
+    query = query.rstrip(',') + f' WHERE id = {id}'
+
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+
+    return 'Success!'
+
+# Delete the given airport
+@airports.route('/airports/<id>', methods=['DELETE'])
+def delete_airport(id):
+    query = f'DELETE FROM Airport WHERE id = {id}'
+
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+
+    return 'Success!'
