@@ -25,16 +25,9 @@ def add_new_airport():
     city = data['airport_city']
     state = data['airport_state']
     country = data['airport_country']
-
-    query = 'insert into Airport (IATACode, name, city, state, country) values ("'
-    query += IATACode + '", "'
-    query += name + '", "'
-    query += city + '", '
-    query += state + '", '
-    query += country + ')'
-
     cursor = db.get_db().cursor()
-    cursor.execute(query)
+    cursor.execute('insert into Airport (IATAcode, name, city, state, country) values (%s, %s, %s, %s, %s)', 
+                   (IATACode, name, city, state, country))
     db.get_db().commit()
     
     return 'Success!'
@@ -65,19 +58,26 @@ def update_airport(id):
 
     # Construct the query
     query = 'UPDATE Airport SET'
-    if name:
-        query += f' name = "{name}",'
-    if city:
-        query += f' city = "{city}",'
-    if state:
-        query += f' state = "{state}",'
-    if country:
-        query += f' country = "{country}",'
+    params = []
 
-    query = query.rstrip(',') + f' WHERE id = {id}'
+    if name:
+        query += ' name = %s,'
+        params.append(name)
+    if city:
+        query += ' city = %s,'
+        params.append(city)
+    if state:
+        query += ' state = %s,'
+        params.append(state)
+    if country:
+        query += ' country = %s,'
+        params.append(country)
+
+    query = query.rstrip(',') + ' WHERE IATAcode = %s'
+    params.append(id)
 
     cursor = db.get_db().cursor()
-    cursor.execute(query)
+    cursor.execute(query, tuple(params))
     db.get_db().commit()
 
     return 'Success!'
@@ -85,10 +85,7 @@ def update_airport(id):
 # Delete the given airport
 @airports.route('/airports/<id>', methods=['DELETE'])
 def delete_airport(id):
-    query = f'DELETE FROM Airport WHERE id = {id}'
-
     cursor = db.get_db().cursor()
-    cursor.execute(query)
+    cursor.execute('DELETE FROM Airport WHERE IATAcode = %s', (id,))
     db.get_db().commit()
-
     return 'Success!'
