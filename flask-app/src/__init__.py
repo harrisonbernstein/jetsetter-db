@@ -38,12 +38,14 @@ def create_app():
     from src.passengers.passengers import passengers
     from src.airports.airports import airports
     from src.bookings.bookings import bookings
+    from src.flights.flights import flights
 
     # Register the routes from each Blueprint with the app object
     # and give a url prefix to each
     app.register_blueprint(passengers, url_prefix='/p')
     app.register_blueprint(airports, url_prefix='/a')
     app.register_blueprint(bookings, url_prefix='/b')
+    app.register_blueprint(flights, url_prefix='/f')
 
     # Don't forget to return the app object
     return app
