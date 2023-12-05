@@ -47,7 +47,7 @@ def create_app():
     app.register_blueprint(bookings, url_prefix='/bo')
     app.register_blueprint(billings, url_prefix='/bi')
     app.register_blueprint(flights, url_prefix='/f')
-    app.register_blueprint(flights, url_prefix='/cm')
+    app.register_blueprint(crew_members, url_prefix='/cm')
 
     # Don't forget to return the app object
     return app
