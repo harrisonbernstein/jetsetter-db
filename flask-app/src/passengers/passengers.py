@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, make_response
+from flask import Blueprint, request, jsonify, make_response, current_app
 import json
 from src import db
 
@@ -39,12 +39,14 @@ def get_passenger(passengerID):
     cursor.execute('select * from Passenger where passengerId = %s', (passengerID,))
     row_headers = [x[0] for x in cursor.description]
     json_data = []
-    theData = cursor.fetchall()
-    for row in theData:
-        json_data.append(dict(zip(row_headers, row)))
+    theData = cursor.fetchall()[0]
+    current_app.logger.info(theData)
+    json_data = (dict(zip(row_headers, theData)))
+    current_app.logger.info(json_data)
     the_response = make_response(jsonify(json_data))
     the_response.status_code = 200
     the_response.mimetype = 'application/json'
+    current_app.logger.info(the_response)
     return the_response
   if request.method == 'PUT':
     data = request.json
@@ -53,9 +55,8 @@ def get_passenger(passengerID):
     dateOfBirth = data['dateOfBirth']
     gender = data['gender']
     nationality = data['nationality']
-    passengerId = data['passengerId']
     cursor = db.get_db().cursor()
-    cursor.execute('UPDATE Passenger SET firstName = %s, lastName = %s, dateOfBirth= %s, gender= %s, nationality = %s  WHERE passengerId = %s', (firstName, lastName, dateOfBirth, gender, nationality, passengerId,))
+    cursor.execute('UPDATE Passenger SET firstName = %s, lastName = %s, dateOfBirth= %s, gender= %s, nationality = %s  WHERE passengerId = %s', (firstName, lastName, dateOfBirth, gender, nationality, passengerID,))
     db.get_db().commit()
     return 'Success!'
   if request.method == 'DELETE':
