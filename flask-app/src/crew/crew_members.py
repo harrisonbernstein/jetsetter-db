@@ -25,7 +25,7 @@ def get_crew_member_by_id(id):
     column_headers = [x[0] for x in cursor.description]
     theData = cursor.fetchall()
     for row in theData:
-        json_data.append(dict(zip(column_headers, row)))   
+        json_data = (dict(zip(column_headers, row)))   
     return jsonify(json_data)
 
 # Add new crew member to the database
