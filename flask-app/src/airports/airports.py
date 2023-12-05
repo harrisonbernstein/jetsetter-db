@@ -89,3 +89,33 @@ def delete_airport(id):
     cursor.execute('DELETE FROM Airport WHERE IATAcode = %s', (id,))
     db.get_db().commit()
     return 'Success!'
+
+@airports.route('/airports/<id>/availableGates', methods=['GET', 'POST', 'DELETE'])
+def get_gates(id):
+    if request.method == 'GET':
+        cursor = db.get_db().cursor()
+        cursor.execute('select * from AirportGate WHERE IATAcode = %s', (id,))
+        row_headers = [x[0] for x in cursor.description]
+        json_data = []
+        theData = cursor.fetchall()
+        for row in theData:
+            json_data.append(dict(zip(row_headers, row)))
+        the_response = make_response(jsonify(json_data))
+        the_response.status_code = 200
+        the_response.mimetype = 'application/json'   
+        return the_response
+    if request.method == 'POST':
+        data = request.json
+        gateNumber = data['gateNumber']
+        cursor = db.get_db().cursor()
+        cursor.execute('insert into AirportGate (IATAcode, gateNumber) values (%s, %s)', 
+                       (id, gateNumber))
+        db.get_db().commit()
+        return 'Success!'
+    if request.method == 'DELETE':
+        data = request.json
+        gateNumber = data['gateNumber']
+        cursor = db.get_db().cursor()
+        cursor.execute('DELETE FROM AirportGate WHERE IATAcode = %s AND gateNumber = %s', (id, gateNumber,))
+        db.get_db().commit()
+        return 'Success!'
