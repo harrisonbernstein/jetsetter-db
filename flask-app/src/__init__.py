@@ -39,6 +39,7 @@ def create_app():
     from src.billings.billings import billings
     from src.flights.flights import flights
     from src.crew.crew_members import crew_members
+    from src.crewAssignment.crewAssignment import crewAssignment
 
     # Register the routes from each Blueprint with the app object
     # and give a url prefix to each
@@ -48,6 +49,7 @@ def create_app():
     app.register_blueprint(billings, url_prefix='/bi')
     app.register_blueprint(flights, url_prefix='/f')
     app.register_blueprint(crew_members, url_prefix='/cm')
+    app.register_blueprint(crewAssignment, url_prefix='/c')
 
     # Don't forget to return the app object
     return app
