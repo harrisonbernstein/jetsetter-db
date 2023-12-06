@@ -33,3 +33,16 @@ def get_crew_assignment(id):
     cursor.execute('DELETE FROM CrewMemberAssignment WHERE assignmentID = %s', (id,))
     db.get_db().commit()
     return 'Success!'
+  
+# Add new crew assignment to the database
+@crewAssignment.route('/crewassignment', methods=['POST'])
+def add_new_crew_assignment():
+    data = request.json
+    flight_id = data['crew_assignment_flight_id']
+    role = data['crew_assignment_role']
+    crew_id = data['crew_assignment_crew_id']
+    cursor = db.get_db().cursor()
+    cursor.execute('insert into CrewMemberAssignment (flightId, role, crewID) values (%s, %s, %s)', 
+                   (flight_id, role, crew_id))
+    db.get_db().commit()
+    return 'Success!'
