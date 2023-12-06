@@ -21,21 +21,21 @@ CREATE TABLE IF NOT EXISTS AirportGate (
 );
 
 CREATE TABLE IF NOT EXISTS Aircraft (
-    aircraftID int AUTO_INCREMENT,
+    aircraftID int NOT NULL AUTO_INCREMENT,
     model text,
     capacity int,
     PRIMARY KEY (aircraftID)
 );
 
 CREATE TABLE IF NOT EXISTS Manager (
-    managerID int AUTO_INCREMENT,
+    managerID int NOT NULL AUTO_INCREMENT,
     firstName text,
     lastName text,
     PRIMARY KEY (managerID)
 );
 
 CREATE TABLE IF NOT EXISTS Flight (
-    flightId int AUTO_INCREMENT,
+    flightId int NOT NULL AUTO_INCREMENT,
     status text,
     duration time,
     destinationGate varchar(5),
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS Flight (
 );
 
 CREATE TABLE IF NOT EXISTS Passenger (
-    passengerId int AUTO_INCREMENT,
+    passengerId int NOT NULL AUTO_INCREMENT,
     firstName text,
     lastName text,
     dateOfBirth date,
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS PassengerEmail(
 );
 
 CREATE TABLE IF NOT EXISTS Booking (
-    bookingId int AUTO_INCREMENT,
+    bookingId int NOT NULL AUTO_INCREMENT,
     numberBags int,
     preferences text,
     boardingGroup char(1),
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS Booking (
 );
 
 CREATE TABLE IF NOT EXISTS Billing (
-    billingId int AUTO_INCREMENT,
+    billingId int NOT NULL AUTO_INCREMENT,
     totalAmount decimal(10, 2),
     paymentStatus text,
     paymentMethod text,
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS CrewMember (
 );
 
 CREATE TABLE IF NOT EXISTS CrewMemberAssignment (
-    assignmentID int AUTO_INCREMENT,
+    assignmentID int NOT NULL AUTO_INCREMENT,
     flightId int,
     role text,
     crewID int,
