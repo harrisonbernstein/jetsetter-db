@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS CrewMemberAssignment (
     role text,
     crewID int,
     PRIMARY KEY (assignmentID),
-    FOREIGN KEY (flightId) references Flight(flightId) ON UPDATE cascade ON DELETE restrict,
+    FOREIGN KEY (flightId) references Flight(flightId) ON UPDATE cascade ON DELETE cascade,
     FOREIGN KEY (crewID) references CrewMember(crewID) ON UPDATE cascade ON DELETE cascade
 );
 
