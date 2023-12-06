@@ -8,7 +8,7 @@ crewAssignment = Blueprint('crewassignment', __name__)
 def get_crew_assignment(id):
   if request.method == 'GET':
     cursor = db.get_db().cursor()
-    cursor.execute('select * from CrewMemberAssignment where assignmentID = %s', (id,))
+    cursor.execute('select * from CrewMemberAssignment where crewID = %s', (id,))
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()
