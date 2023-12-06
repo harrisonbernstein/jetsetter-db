@@ -1,12 +1,24 @@
-# MySQL + Flask Boilerplate Project
+# Jetsetter DB
 
-This repo contains a boilerplate setup for spinning up 3 Docker containers: 
-1. A MySQL 8 container for obvious reasons
-1. A Python Flask container to implement a REST API
+## This project is an interactive app to handle airline flights, passengers, bookings, and operations. 
+
+## This repo sets up 3 Docker containers: 
+1. A MySQL 8 container for managing a database (populated with sameple data generated via Mockaroo)
+1. A Python Flask container to implement a REST API (more details below)
 1. A Local AppSmith Server
 
+## 7 blueprints were created in the Flash backend:
+1. Airports
+1. Billings
+1. Bookings
+1. Crew members
+1. Crew member assignments
+1. Flights
+1. Passengers
+
+Each blueprint has a set of routes to handle GET, POST, PUT, and DELETE requests.
+
 ## How to setup and start the containers
-**Important** - you need Docker Desktop installed
 
 1. Clone this repository.  
 1. Create a file named `db_root_password.txt` in the `secrets/` folder and put inside of it the root password for MySQL. 
