@@ -32,10 +32,10 @@ def get_crew_member_by_id(id):
 @crew_members.route('/crew-members', methods=['POST'])
 def add_new_crew_member():
     data = request.json
-    first_name = data['crew_member_first_name']
-    last_name = data['crew_member_last_name']
-    weekly_hours_worked = data['crew_member_weekly_hours_worked']
-    time_taken_off = data['crew_member_time_taken_off']
+    first_name = data['firstName']
+    last_name = data['lastName']
+    weekly_hours_worked = data['weeklyHoursWorked']
+    time_taken_off = data['timeTakenOff']
     cursor = db.get_db().cursor()
     cursor.execute('insert into CrewMember (firstName, lastName, weeklyHoursWorked, timeTakenOff) values (%s, %s, %s, %s)', 
                    (first_name, last_name, weekly_hours_worked, time_taken_off))

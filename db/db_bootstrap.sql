@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS Billing (
 );
 
 CREATE TABLE IF NOT EXISTS CrewMember (
-  crewID int AUTO_INCREMENT,
+  crewID int NOT NULL AUTO_INCREMENT,
   firstName text,
   lastName text,
   weeklyHoursWorked int,
