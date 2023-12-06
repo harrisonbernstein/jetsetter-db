@@ -13,7 +13,6 @@ def get_flights():
         destinationAirport = data['destinationAirport']
         destinationGate = data['destinationGate']
         duration = datetime.strptime(data['duration'], '%H:%M:%S').time()
-        flightId = data['flightId']
         landingTime = datetime.strptime(data['landingTime'], '%Y-%m-%d %H:%M:%S')
         managerID = data['managerID']
         originAirport = data['originAirport']
@@ -21,8 +20,8 @@ def get_flights():
         status = data['status']
         takeOffTime = datetime.strptime(data['takeOffTime'], '%Y-%m-%d %H:%M:%S')
         cursor = db.get_db().cursor()
-        cursor.execute('insert into Flight (aircraft, destinationAirport, destinationGate, duration, flightId, landingTime, managerID, originAirport, originGate, status, takeOffTime) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', 
-                        (aircraft, destinationAirport, destinationGate, duration, flightId, landingTime, managerID, originAirport, originGate, status, takeOffTime,))
+        cursor.execute('insert into Flight (aircraft, destinationAirport, destinationGate, duration, landingTime, managerID, originAirport, originGate, status, takeOffTime) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', 
+                        (aircraft, destinationAirport, destinationGate, duration, landingTime, managerID, originAirport, originGate, status, takeOffTime))
         db.get_db().commit()
         return 'Success!'
     if request.method == 'GET':

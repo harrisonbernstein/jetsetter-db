@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS Booking (
     flightId int,
     passengerId int,
     PRIMARY KEY (bookingId),
-    FOREIGN KEY (flightId) references Flight(flightId) ON UPDATE cascade ON DELETE restrict,
+    FOREIGN KEY (flightId) references Flight(flightId) ON UPDATE cascade ON DELETE cascade,
     FOREIGN KEY (passengerId) references Passenger(passengerId) ON UPDATE cascade ON DELETE cascade
 );
 

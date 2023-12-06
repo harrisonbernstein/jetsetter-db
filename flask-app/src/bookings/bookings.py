@@ -33,11 +33,11 @@ def get_booking_by_id(booking_id):
 @bookings.route('/bookings/passenger/<passenger_id>', methods=['POST'])
 def create_booking_for_existing_passenger(passenger_id):
     data = request.json
-    number_bags = data['number_bags']
+    number_bags = data['numberBags']
     preferences = data['preferences']
-    boarding_group = data['boarding_group']
+    boarding_group = data['boardingGroup']
     seat = data['seat']
-    flight_id = data['flight_id']
+    flight_id = data['flightId']
 
     cursor = db.get_db().cursor()
     cursor.execute('insert into Booking (numberBags, preferences, boardingGroup, seat, flightId, passengerId) values (%s, %s, %s, %s, %s, %s)', 
@@ -50,12 +50,12 @@ def create_booking_for_existing_passenger(passenger_id):
 @bookings.route('/bookings/<booking_id>', methods=['PUT'])
 def update_airport(booking_id):
     data = request.json
-    number_bags = data['number_bags']
+    number_bags = data['numberBags']
     preferences = data['preferences']
-    boarding_group = data['boarding_group']
+    boarding_group = data['boardingGroup']
     seat = data['seat']
-    flight_id = data['flight_id']
-    passenger_id = data['passenger_id']
+    flight_id = data['flightId']
+    passenger_id = data['passengerId']
 
     if not number_bags and not preferences and not boarding_group and not seat and not flight_id and not passenger_id:
         return 'No fields provided for update', 400
