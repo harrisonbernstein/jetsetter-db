@@ -9,7 +9,7 @@
 1. A Python Flask container to implement a REST API (more details below)
 1. A Local AppSmith Server
 
-## 7 blueprints were created in the Flash backend:
+## 8 blueprints were created in the Flash backend:
 1. Airports
 1. Billings
 1. Bookings
@@ -17,6 +17,7 @@
 1. Crew member assignments
 1. Flights
 1. Passengers
+1. Gates
 
 Each blueprint has a set of routes to handle GET, POST, PUT, and DELETE requests.
 
