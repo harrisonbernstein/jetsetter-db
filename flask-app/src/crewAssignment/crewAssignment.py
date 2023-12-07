@@ -38,9 +38,9 @@ def get_crew_assignment(id):
 @crewAssignment.route('/crewassignment', methods=['POST'])
 def add_new_crew_assignment():
     data = request.json
-    flight_id = data['crew_assignment_flight_id']
-    role = data['crew_assignment_role']
-    crew_id = data['crew_assignment_crew_id']
+    flight_id = data['flightId']
+    role = data['role']
+    crew_id = data['crewID']
     cursor = db.get_db().cursor()
     cursor.execute('insert into CrewMemberAssignment (flightId, role, crewID) values (%s, %s, %s)', 
                    (flight_id, role, crew_id))
