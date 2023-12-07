@@ -2,6 +2,8 @@
 
 ## This project is an interactive app to handle airline flights, passengers, bookings, and operations. 
 
+## Link to demo video: https://drive.google.com/file/d/1s7ktBN6Cd2O4a5GExeSr6Y2oGWUho_ZK/view?usp=share_link
+
 ## This repo sets up 3 Docker containers: 
 1. A MySQL 8 container for managing a database (populated with sameple data generated via Mockaroo)
 1. A Python Flask container to implement a REST API (more details below)
